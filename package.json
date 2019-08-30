@@ -1,0 +1,24 @@
+{
+  "name": "registrarjs",
+  "version": "1.0.0",
+  "description": "A registrar package for javascript objects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/franckEinstein90/registrarjs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/franckEinstein90/registrarjs/issues"
+  },
+  "homepage": "https://github.com/franckEinstein90/registrarjs#readme",
+  "dependencies": {
+    "appversion": "^1.7.1",
+    "chai": "^4.2.0",
+    "validator": "^11.1.0"
+  }
+}
