@@ -31,8 +31,13 @@ const registrar = (function() {
                 this.elements.set(newUUID, options);
                 return newUUID;
             }
-        }
+        }, 
+	errors: {
+		nonRegisteredElement: "Element is not registered"
+	}, 
+	Exception:function(err){
 
+	}
     }
 })()
 
@@ -85,7 +90,7 @@ registrar.Registrar.prototype = {
          * the registrar
          * *****************************************************/
         if (!this.elements.has(evId)) {
-            throw new elements.Exception("Event does not exist");
+            throw new registrar.Exception(registrar.errors.nonRegisteredElement)
         }
         this.elements.delete(evId);
     }
