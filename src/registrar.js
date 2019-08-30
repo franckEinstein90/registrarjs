@@ -19,10 +19,17 @@ const registrar = (function() {
     return {
         Registrar: function() {
             this.elements = new Map();
-            this.register = function(o) {
+            this.register = function(options) {
+                if (typeof options === 'object' && 
+			typeof(options.uuid) !== "undefined" &&
+			typeof(options.value) !== "undefined"){
+
+                    this.elements.set(options.uuid, options.value); 
+                    return options.uuid
+                }
                 let newUUID = generateUUID();
-                this.elements.set(newUUID, o);
-		return newUUID; 
+                this.elements.set(newUUID, options);
+                return newUUID;
             }
         }
 
@@ -54,8 +61,8 @@ registrar.Registrar.prototype = {
         this.elements.forEach(eventCallbackFunction);
     },
 
-    get: function(eventId) {
-        return this.elements.get(eventId);
+    get: function(objID) {
+        return this.elements.get(objID);
     },
 
     filter: function(filterPred) {

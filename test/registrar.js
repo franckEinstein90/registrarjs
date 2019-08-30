@@ -1,7 +1,10 @@
 'use strict';
 
 const registrar = require('../src/registrar').registrar
+
 const validator = require('validator')
+const uuidv4 = require('uuid/v4')
+
 const expect = require('chai').expect
 
 describe('registrar module', function() {
@@ -37,19 +40,30 @@ describe('registrar::Registrar object', function() {
 
     context('registrar.Registrar::register()', function() {
         let reg = new registrar.Registrar();
+        let regSize = 0; 
 
         it('add objects in the registrar, and assigns a unique ID to each registered object', function() {
             let objID = reg.register(1)
             expect(validator.isUUID(objID)).to.equal(true);
             expect(reg.size).to.eql(1)
+            regSize = reg.size
+        })
+
+        it('it can be made to use a pre-assigned unique ID', function() {
+            let newID = uuidv4(); 
+            let objID = reg.register({uuid:newID, value:2})
+            expect(validator.isUUID(objID)).to.equal(true);
+            expect(reg.size).to.eql(regSize + 1)
+            expect(reg.get(newID)).to.eql(2)
+            regSize = reg.size
         })
 
         it('is a store of objects', function() {
             [1, "dsa", {
                 x: 1,
                 y: 2
-            }].forEach(x => reg.register(x));
-            expect(reg.size).to.equal(4);
+            }].forEach(x => reg.register(x))
+            expect(reg.size).to.equal(regSize + 3)
         })
     })
 

@@ -19,6 +19,7 @@
   "dependencies": {
     "appversion": "^1.7.1",
     "chai": "^4.2.0",
+    "uuid": "^3.3.3",
     "validator": "^11.1.0"
   }
 }
